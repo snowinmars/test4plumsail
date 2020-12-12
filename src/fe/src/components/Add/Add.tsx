@@ -10,7 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Checkbox from '@material-ui/core/Checkbox';
 import {Sex, Breed, Dog} from './Types';
-import {onFormChange, onFormEnumChange, onFormCheckboxChange, onAvatarChange} from './Store';
+import {onFormChange, save, onFormEnumChange, onFormCheckboxChange, onAvatarChange} from './Store';
 import {Avatar} from '@material-ui/core';
 import api from '../../config/api';
 
@@ -28,7 +28,13 @@ function Add(): JSX.Element {
   const [isAvatarLoading, setIsAvatarLoading] = useState(false);
 
   return (
-    <form className={'plum-add-form'}>
+    <form
+      className={'plum-add-form'}
+      onSubmit={(e) => {
+        e.preventDefault();
+        return save(form);
+      }}
+    >
       <div className={'plum-primary-dog-info'}>
         <TextField
           required

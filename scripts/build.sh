@@ -13,6 +13,7 @@ echo && echo "db"
 
 docker build \
 		-t $plumsailDb \
+		--file $src/db/Dockerfile \
 		$src/db
 
 echo && echo "be"
@@ -29,5 +30,6 @@ docker build \
 		-t $plumsailFe \
 		--build-arg REACT_GIT_HASH=$gitHash \
 		--build-arg REACT_APP_HOST=$plumsailBePublicUrl \
+		--build-arg REACT_APP_YANDEX_DISK_OAUTH_TOKEN=$yandexDiskOauthToken \
 		--file $src/fe/Dockerfile \
 		$src/fe

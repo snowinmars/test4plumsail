@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Plum.Services</AssemblyName>
+        <RootNamespace>Plum.Services</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Providers.Abstractions\Providers.Abstractions.csproj" />
+      <ProjectReference Include="..\Services.Abstractions\Services.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>..\..\..\..\..\..\..\..\usr\share\dotnet\packs\Microsoft.AspNetCore.App.Ref\5.0.0\ref\net5.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\_configuration\build\dotnet\CommonAssemblyAttributes.cs">
+        <Link>AssemblyInfo\CommonAssemblyAttributes.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.10" />
+    </ItemGroup>
+
+</Project>

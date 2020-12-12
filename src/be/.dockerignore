@@ -1,0 +1,8 @@
+bin/
+obj/
+.git
+.idea
+packages
+node_modules
+_output
+Tests*

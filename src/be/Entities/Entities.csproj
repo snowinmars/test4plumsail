@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Plum.Entities</AssemblyName>
+        <RootNamespace>Plum.Entities</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NodaTime" Version="3.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\_configuration\build\dotnet\CommonAssemblyAttributes.cs">
+        <Link>AssemblyInfo\CommonAssemblyAttributes.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+</Project>

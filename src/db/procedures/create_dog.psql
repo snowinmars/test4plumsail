@@ -1,0 +1,47 @@
+set client_min_messages to warning ;
+
+create extension if not exists "uuid-ossp";
+
+drop function if exists create_dog;
+
+create function create_dog
+  ( _id               uuid
+  , _name   text
+  , _avatar text
+  , _sex    integer
+  , _breed  integer
+  , _birthday timestamp without time zone
+  , _hasmanners bool
+  , _hasobedience bool )
+returns setof Dogs as
+$$
+declare
+  result Dogs ;
+begin
+return query
+  insert into Dogs
+    ( id
+    , createdDate
+    , updatedDate
+    , name
+    , avatar
+    , sex
+    , breed
+    , birthday
+    , hasManners
+    , hasObedience
+  ) values
+    ( _id
+    , now()
+    , now()
+    , _name
+    , _avatar
+    , _sex
+    , _breed
+    , _birthday
+    , _hasmanners
+    , _hasobedience
+  ) returning * ;
+end ;
+$$
+language plpgsql;

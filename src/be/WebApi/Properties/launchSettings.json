@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Plum": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5002",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PSQL_HOST": "localhost",
+        "PSQL_PORT": "5432",
+        "PSQL_DATABASE_NAME": "plumsail",
+        "PSQL_USER": "postgres"
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 . variables.sh
-set -ex
 
 docker volume list | grep -w $plumsailDatabaseVolumeName
 if [[ $? -ne 0 ]]; then
@@ -33,7 +32,9 @@ if [[ $? -ne 0 ]]; then
 	docker network create --subnet=$plumsailNetworkSubnet $plumsailNetworkName
 fi
 
-db_id=$( docker run -d
+set -e
+
+db_id=$( docker run -d \
 		 -p $plumsailDbHostPort:$plumsailDbContainerPort \
 		 --net $plumsailNetworkName \
 		 --ip $plumsailDbIp \
@@ -42,12 +43,16 @@ db_id=$( docker run -d
 		 -e PGDATA=/var/lib/postgresql/data/pgdata \
 		 $plumsailDb )
 
+
 be_id=$( docker run -d \
 		-p $plumsailBeHostPort:$plumsailBeContainerPort \
 		--net $plumsailNetworkName \
 		--ip $plumsailBeIp \
 		-v $plumsailLogsVolumeName:/app/_logs \
-		-e LATEXDIR=/app/src/latex \
+		-e PSQL_HOST=$plumsailDbIp \
+		-e PSQL_PORT=$plumsailDbHostPort \
+		-e PSQL_DATABASE_NAME=$plumsailDatabaseName \
+		-e PSQL_USER=$plumsailDatabaseUser \
 		$plumsailBe )
 
 fe_id=$( docker run -d \

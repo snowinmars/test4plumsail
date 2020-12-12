@@ -3,8 +3,8 @@ import axios, {AxiosResponse} from 'axios';
 import api from '../../config/api';
 import {DiskLinkResult, DiskUploadResult, Dog, Result} from './Types';
 
-const patch = (form: Dog): Promise<AxiosResponse<Result<Dog>>> => {
-  const endpoint = `${api.uri}/api/dog`;
+export const save = (form: Dog): Promise<AxiosResponse<Result<Dog>>> => {
+  const endpoint = `${api.uri}/api/dogs`;
 
   return axios.post<Result<Dog>>(endpoint, form);
 };

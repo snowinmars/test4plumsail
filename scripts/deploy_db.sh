@@ -15,8 +15,8 @@ fi
 
 
 
-sqls=$( find "$root/schemas_migrations" -name "*.psql" -type f | sort )
-total=$( find "$root/schemas_migrations" -name "*.psql" -type f | wc -l )
+sqls=$( find "$root/migrations" -name "*.psql" -type f | sort )
+total=$( find "$root/migrations" -name "*.psql" -type f | wc -l )
 count=0
 
 for sql in ${sqls}
@@ -30,8 +30,8 @@ done
 
 
 
-sqls=$( find "$root/procedures_migrations" -name "*.psql" -type f | sort )
-total=$( find "$root/procedures_migrations" -name "*.psql" -type f | wc -l )
+sqls=$( find "$root/procedures" -name "*.psql" -type f | sort )
+total=$( find "$root/procedures" -name "*.psql" -type f | wc -l )
 count=0
 
 for sql in ${sqls}

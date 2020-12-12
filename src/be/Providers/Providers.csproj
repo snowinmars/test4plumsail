@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Plum.Providers</AssemblyName>
+        <RootNamespace>Plum.Providers</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Common\Common.csproj" />
+      <ProjectReference Include="..\Entities\Entities.csproj" />
+      <ProjectReference Include="..\Providers.Abstractions\Providers.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Helpers" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.78" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.10" />
+      <PackageReference Include="Npgsql" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\_configuration\build\dotnet\CommonAssemblyAttributes.cs">
+        <Link>AssemblyInfo\CommonAssemblyAttributes.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+</Project>
