@@ -21,24 +21,24 @@ begin
 return query
   insert into Dogs
     ( id
+    , sex
+    , name
+    , breed
+    , avatar
+    , birthday
     , createdDate
     , updatedDate
-    , name
-    , avatar
-    , sex
-    , breed
-    , birthday
     , hasManners
     , hasObedience
   ) values
     ( _id
-    , now()
-    , now()
-    , _name
-    , _avatar
     , _sex
+    , _name
     , _breed
+    , _avatar
     , _birthday
+    , now()
+    , now()
     , _hasmanners
     , _hasobedience
   ) returning * ;

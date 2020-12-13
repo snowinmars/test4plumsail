@@ -8,14 +8,14 @@ namespace Plum.Services
 {
     internal class DogService : BaseService, IDogService
     {
-        private readonly IDogProvider dogProvider;
-
         public DogService(ILogger<BaseService> logger,
             IDogProvider dogProvider)
             : base(logger)
         {
             this.dogProvider = dogProvider;
         }
+
+        private readonly IDogProvider dogProvider;
 
         public Task<Dog> CreateAsync(Dog dog)
         {

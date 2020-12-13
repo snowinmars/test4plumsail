@@ -1,7 +1,7 @@
 FROM ubuntu:bionic-20200403
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget gnupg 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget gnupg
 
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc

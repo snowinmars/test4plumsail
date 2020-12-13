@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import './Create.scoped.scss';
+import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
+import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 import FormLabel from '@material-ui/core/FormLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import Checkbox from '@material-ui/core/Checkbox';
-import {onFormChange, save, onFormEnumChange, onFormCheckboxChange, onAvatarChange} from './Store';
-import {Avatar} from '@material-ui/core';
 import api from '../../config/api';
 import {Breed, Sex} from '../../types/enums';
 import {DogCreateModel} from '../../types/models';
+import {onFormChange, save, onFormEnumChange, onFormCheckboxChange, onAvatarChange} from './Store';
+import './Create.scoped.scss';
 
 function Create(): JSX.Element {
   const [form, setForm] = useState<DogCreateModel>({

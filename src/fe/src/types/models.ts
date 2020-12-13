@@ -1,13 +1,13 @@
 import {Breed, Sex} from './enums';
 
 export interface DogCreateModel {
-  name: string | null;
   sex: Sex | null;
-  birthDay: string | null;
+  name: string | null;
   breed: Breed | null;
-  hasObedience: boolean,
-  hasManners: boolean,
   avatar: string | null,
+  birthDay: string | null;
+  hasManners: boolean,
+  hasObedience: boolean,
 }
 
 export interface DogReadModel extends DogCreateModel {
@@ -17,9 +17,9 @@ export interface DogReadModel extends DogCreateModel {
 }
 
 export interface Result<T> {
+  data: T;
   isSucceed: boolean;
   isFailed: boolean;
-  data: T;
 }
 
 export interface ResultList<T> extends Result<T>{
@@ -27,10 +27,10 @@ export interface ResultList<T> extends Result<T>{
 }
 
 export interface DiskLinkResult {
-  operation_id: string,
   href: string,
   method: string,
   template: boolean,
+  operation_id: string,
 }
 
 export interface DiskUploadResult {

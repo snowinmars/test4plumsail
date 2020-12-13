@@ -26,6 +26,7 @@ It works, but I'm not sure is it the same that was required. I asked a question,
 
 - *API must be universal and should not depend on certain field* - controversial
 - *Modifications to the original form should not affect API* - `create` entity should be updated
-- *Forms must be searchable* - not all properties. That's dapper issue, and I don't wont to fix it: it doesn't make any sense to me in this task
+- *Forms must be searchable* - not all properties. That's dapper issue. There are workarounds, but I don't wont to fix it: it doesn't make any sense to me in this task
 - *src/be/services* - do nothing, but that's because the app is simple
 - *src/fe* - typescript and functional components doesn't make me happy. Css variables doesn't work with material ui, and I hate it
+- *api* - returns 500, that's fine for me; that could not be fine in several architectures

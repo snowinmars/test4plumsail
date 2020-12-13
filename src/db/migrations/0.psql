@@ -1,16 +1,15 @@
 set client_min_messages to warning ;
 
-
 create table if not exists Dogs
-  ( id          uuid not null
-  , createdDate timestamp without time zone not null
-  , updatedDate timestamp without time zone not null
-  , name        text not null
-  , avatar text
-  , sex    integer
-  , breed  integer
-  , birthday timestamp without time zone
-  , hasManners bool
-  , hasObedience bool
+  ( id            uuid not null
+  , sex           integer
+  , name          text not null
+  , breed         integer
+  , avatar        text
+  , birthday      timestamp without time zone
+  , createdDate   timestamp without time zone not null
+  , updatedDate   timestamp without time zone not null
+  , hasManners    bool
+  , hasObedience  bool
   , primary key (id)
 );

@@ -25,9 +25,26 @@ namespace Plum.WebApi
             Configuration = configuration;
         }
 
+        private const string CustomCorsPolicy = "custom_cors_policy";
+
         public IConfiguration Configuration { get; }
 
-        private const string CustomCorsPolicy = "custom_cors_policy";
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseCors(CustomCorsPolicy);
+
+            app.UseRouting()
+               .UseEndpoints(endpoints =>
+               {
+                   endpoints.MapControllers();
+                   endpoints.MapHealthChecks("/health");
+               });
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -59,18 +76,6 @@ namespace Plum.WebApi
             });
         }
 
-        private string ReadEnvironmentVariable(string key)
-        {
-            var item = Configuration.GetValue(key, "");
-
-            if (string.IsNullOrWhiteSpace(item))
-            {
-                throw new ArgumentException($"'{key}' env var is not set properly, current value is {item}");
-            }
-
-            return item;
-        }
-
         private void AddSqlContext(IServiceCollection services)
         {
             var host = ReadEnvironmentVariable("PSQL_HOST");
@@ -97,21 +102,16 @@ namespace Plum.WebApi
             services.AddTransient<IDbConnection>(sp => new NpgsqlConnection(connectionString));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        private string ReadEnvironmentVariable(string key)
         {
-            if (env.IsDevelopment())
+            var item = Configuration.GetValue(key, "");
+
+            if (string.IsNullOrWhiteSpace(item))
             {
-                app.UseDeveloperExceptionPage();
+                throw new ArgumentException($"'{key}' env var is not set properly, current value is {item}");
             }
 
-            app.UseCors(CustomCorsPolicy);
-
-            app.UseRouting()
-               .UseEndpoints(endpoints =>
-               {
-                   endpoints.MapControllers();
-                   endpoints.MapHealthChecks("/health");
-               });
+            return item;
         }
     }
 }

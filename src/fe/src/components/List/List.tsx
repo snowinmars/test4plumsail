@@ -1,25 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import './List.scoped.scss';
-import {DogReadModel} from '../../types/models';
-import {list} from './Store';
+import Chip from '@material-ui/core/Chip';
 import Table from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
+import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import {Sex} from '../../types/enums';
+import TableContainer from '@material-ui/core/TableContainer';
+import TablePagination from '@material-ui/core/TablePagination';
+import {list} from './Store';
 import config from '../../config/api';
-import TextField from '@material-ui/core/TextField';
-import Chip from "@material-ui/core/Chip";
-import {TablePagination} from "@material-ui/core";
+import {Sex} from '../../types/enums';
+import {DogReadModel} from '../../types/models';
+import './List.scoped.scss';
 
 const renderTraining = (dog: DogReadModel) => {
   return (
     <div>
-      {dog.hasManners && <Chip label="Manners" />}
-      {dog.hasObedience && <Chip label="Obedience" />}
+      {dog.hasManners && <Chip label={'Manners'} />}
+      {dog.hasObedience && <Chip label={'Obedience'} />}
     </div>
   );
 };
@@ -97,7 +97,7 @@ function List(): JSX.Element {
         </TableBody>
       </Table>
       <TablePagination
-        component="div"
+        component={'div'}
         count={dogsCount}
         rowsPerPage={config.paging.perPage}
         rowsPerPageOptions={[config.paging.perPage]}

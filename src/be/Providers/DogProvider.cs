@@ -16,23 +16,21 @@ namespace Plum.Providers
         public DogProvider(ILogger<BaseProvider> logger,
             IDbConnection connection,
             IDapperBuilder dapperBuilder)
-            : base(logger, connection, dapperBuilder)
-        {
-        }
+            : base(logger, connection, dapperBuilder) { }
 
         public async Task<Dog> CreateAsync(Dog dog)
         {
             var dbDog = await DapperBuilder.Call(Connection)
-                         .Procedure(Procedures.Dog.Create)
-                         .WithParameter("_id", Guid.NewGuid())
-                         .WithParameter("_name", dog.Name)
-                         .WithParameter("_avatar", dog.Avatar)
-                         .WithParameter("_sex", dog.Sex)
-                         .WithParameter("_breed", dog.Breed)
-                         .WithParameter("_birthday", dog.Birthday)
-                         .WithParameter("_hasManners", dog.HasManners)
-                         .WithParameter("_hasObedience", dog.HasObedience)
-                         .ExecuteOneAsync<DbDog>();
+                                           .Procedure(Procedures.Dog.Create)
+                                           .WithParameter("_id", Guid.NewGuid())
+                                           .WithParameter("_name", dog.Name)
+                                           .WithParameter("_avatar", dog.Avatar)
+                                           .WithParameter("_sex", dog.Sex)
+                                           .WithParameter("_breed", dog.Breed)
+                                           .WithParameter("_birthday", dog.Birthday)
+                                           .WithParameter("_hasManners", dog.HasManners)
+                                           .WithParameter("_hasObedience", dog.HasObedience)
+                                           .ExecuteOneAsync<DbDog>();
 
             return dbDog.ToDog();
         }

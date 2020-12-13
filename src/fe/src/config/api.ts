@@ -2,16 +2,16 @@ import {AnyObject} from '../types/typescript';
 
 interface EnvWindow {
   _env_: {
-    REACT_APP_YANDEX_DISK_OAUTH_TOKEN: string,
     REACT_APP_HOST: string,
+    REACT_APP_YANDEX_DISK_OAUTH_TOKEN: string,
   }
 }
 
-const token = ((window as unknown) as EnvWindow)._env_.REACT_APP_YANDEX_DISK_OAUTH_TOKEN || '';
 const uri = ((window as unknown) as EnvWindow)._env_.REACT_APP_HOST || '';
+const token = ((window as unknown) as EnvWindow)._env_.REACT_APP_YANDEX_DISK_OAUTH_TOKEN || '';
 
-if (!token) throw new Error(`Yandex disk oauth token not found: ${token}`);
 if (!uri) throw new Error(`Be uri not found: ${uri}`);
+if (!token) throw new Error(`Yandex disk oauth token not found: ${token}`);
 
 export default {
   paging: {
