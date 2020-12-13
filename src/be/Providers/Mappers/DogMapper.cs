@@ -6,7 +6,7 @@ namespace Plum.Providers.Mappers
 {
     internal static class DogMapper
     {
-        public static Dog ToDog(DbDog dbDog)
+        public static Dog ToDog(this DbDog dbDog)
         {
             if (dbDog == default)
             {
@@ -21,7 +21,7 @@ namespace Plum.Providers.Mappers
                 Name = dbDog.Name,
                 Sex = dbDog.Sex,
                 Breed = dbDog.Breed,
-                Birthday = dbDog.Birthday,
+                Birthday = dbDog.BirthDay,
                 Avatar = dbDog.Avatar,
                 HasManners = dbDog.HasManners,
                 HasObedience = dbDog.HasObedience,

@@ -1,13 +1,19 @@
-import {Breed, Sex} from "./enums";
+import {Breed, Sex} from './enums';
 
 export interface DogCreateModel {
   name: string | null;
   sex: Sex | null;
-  birthDate: string | null;
+  birthDay: string | null;
   breed: Breed | null;
   hasObedience: boolean,
   hasManners: boolean,
-  avatarUri: string | null,
+  avatar: string | null,
+}
+
+export interface DogReadModel extends DogCreateModel {
+  id: string,
+  createdDate: string,
+  updatedDate: string,
 }
 
 export interface Result<T> {

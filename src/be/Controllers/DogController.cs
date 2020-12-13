@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,13 +24,23 @@ namespace Plum.Controllers
         }
 
         [HttpPost("")]
-        public async Task<DogReadModel> AddAsync(DogCreateModel model)
+        public async Task<Result<DogReadModel>> CreateAsync(DogCreateModel model)
         {
             var dog = model.ToDog();
 
-            var addedDog = await dogService.AddAsync(dog);
+            var addedDog = await dogService.CreateAsync(dog);
 
-            return addedDog.ToDog();
+            return Success(addedDog.ToDog());
+        }
+
+        [HttpGet("")]
+        public async Task<Result<DogReadModel[]>> ListAsync(int page = 0,
+            int perPage = 10,
+            string search = "")
+        {
+            var dogs = await dogService.ListAsync(page, perPage, search);
+
+            return Success(dogs.Select(x => x.ToDog()).ToArray());
         }
     }
 }

@@ -1,4 +1,4 @@
-import {AnyObject} from "../types/typescript";
+import {AnyObject} from '../types/typescript';
 
 interface EnvWindow {
   _env_: {

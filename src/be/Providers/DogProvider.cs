@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Plum.Entities;
@@ -19,7 +20,7 @@ namespace Plum.Providers
         {
         }
 
-        public async Task<Dog> AddAsync(Dog dog)
+        public async Task<Dog> CreateAsync(Dog dog)
         {
             var dbDog = await DapperBuilder.Call(Connection)
                          .Procedure(Procedures.Dog.Create)
@@ -33,8 +34,19 @@ namespace Plum.Providers
                          .WithParameter("_hasObedience", dog.HasObedience)
                          .ExecuteOneAsync<DbDog>();
 
-            return DogMapper.ToDog(dbDog);
+            return dbDog.ToDog();
         }
 
+        public async Task<Dog[]> ListAsync(int page, int perPage, string search)
+        {
+            var dbDogs = await DapperBuilder.Call(Connection)
+                                            .Procedure(Procedures.Dog.List)
+                                            .WithParameter("_page", page)
+                                            .WithParameter("_perPage", perPage)
+                                            .WithParameter("_search", $"%{search}%")
+                                            .ExecuteManyAsync<DbDog>();
+
+            return dbDogs.Select(DogMapper.ToDog).ToArray();
+        }
     }
 }

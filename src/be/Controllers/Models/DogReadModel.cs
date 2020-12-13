@@ -18,7 +18,7 @@ namespace Plum.Controllers.Models
 
         public Breed Breed { get; set; }
 
-        public LocalDate Birthday { get; set; }
+        public LocalDate BirthDay { get; set; }
 
         public Uri Avatar { get; set; }
 

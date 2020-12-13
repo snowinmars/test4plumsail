@@ -19,11 +19,11 @@ function Create(): JSX.Element {
   const [form, setForm] = useState<DogCreateModel>({
     name: null,
     sex: null,
-    birthDate: null,
+    birthDay: null,
     breed: null,
     hasObedience: false,
     hasManners: false,
-    avatarUri: null,
+    avatar: null,
   });
 
   const [isAvatarLoading, setIsAvatarLoading] = useState(false);
@@ -73,9 +73,9 @@ function Create(): JSX.Element {
           required
           label='День рождения'
           type='date'
-          value={form.birthDate}
+          value={form.birthDay}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            onFormChange(e, form, (f, v) => setForm({...f, birthDate: v}))}
+            onFormChange(e, form, (f, v) => setForm({...f, birthDay: v}))}
           InputLabelProps={{
             shrink: true,
           }}
@@ -139,7 +139,7 @@ function Create(): JSX.Element {
 
             setIsAvatarLoading(true);
 
-            return onAvatarChange(e.target.files[0], form, (f, v) => setForm({...f, avatarUri: v}))
+            return onAvatarChange(e.target.files[0], form, (f, v) => setForm({...f, avatar: v}))
               .then(() => setIsAvatarLoading(false));
           }}
         />
@@ -147,7 +147,7 @@ function Create(): JSX.Element {
           <Avatar
             className={'plum-avatar'}
             alt={'Dog avatar'}
-            src={form.avatarUri || api.defaultAvatar}
+            src={form.avatar || api.defaultAvatar}
           />
           {isAvatarLoading && <div className={'plum-avatar-spinner'}> </div>}
         </label>
@@ -156,7 +156,7 @@ function Create(): JSX.Element {
       <div className={'plum-form-controls'}>
         <FormControl>
           <Button
-            disabled={!form.name || !form.sex || !form.birthDate || !form.breed}
+            disabled={!form.name || !form.sex || !form.birthDay || !form.breed}
             variant={'contained'}
             color={'primary'}
             type={'submit'}

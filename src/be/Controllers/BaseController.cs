@@ -10,5 +10,32 @@ namespace Plum.Controllers
         {
             Logger = logger;
         }
+
+        public class Result<T>
+        {
+            public bool IsSucceed { get; set; }
+
+            public bool IsFailed => !IsSucceed;
+
+            public T Data { get; set; }
+        }
+
+        protected Result<T> Success<T>(T data)
+        {
+            return new Result<T>
+            {
+                Data = data,
+                IsSucceed = true,
+            };
+        }
+
+        protected Result<T> Failure<T>(T data)
+        {
+            return new Result<T>
+            {
+                Data = data,
+                IsSucceed = false,
+            };
+        }
     }
 }

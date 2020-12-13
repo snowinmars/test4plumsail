@@ -1,0 +1,20 @@
+set client_min_messages to warning ;
+
+drop function if exists list_dogs;
+
+create function list_dogs
+  ( _page integer
+  , _perPage integer
+  , _search text )
+returns setof Dogs as
+$$
+begin
+return query (
+  select *
+  from Dogs
+  where Dogs::text like _search
+  order by createdDate
+  limit _perPage offset _page * _perPage ) ;
+end ;
+$$
+language plpgsql;

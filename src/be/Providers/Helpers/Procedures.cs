@@ -5,6 +5,8 @@ namespace Plum.Providers.Helpers
         public class Dog
         {
             public static string Create => "create_dog";
+
+            public static string List => "list_dogs";
         }
     }
 }

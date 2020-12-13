@@ -1,7 +1,7 @@
 import React from 'react';
 import axios, {AxiosResponse} from 'axios';
 import api from '../../config/api';
-import {DiskLinkResult, DiskUploadResult, DogCreateModel, Result} from "../../types/models";
+import {DiskLinkResult, DiskUploadResult, DogCreateModel, Result} from '../../types/models';
 
 
 export const save = (form: DogCreateModel): Promise<boolean> => {

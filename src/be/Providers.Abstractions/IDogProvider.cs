@@ -5,6 +5,8 @@ namespace Plum.Providers.Abstractions
 {
     public interface IDogProvider
     {
-        Task<Dog> AddAsync(Dog dog);
+        Task<Dog> CreateAsync(Dog dog);
+
+        Task<Dog[]> ListAsync(int page, int perPage, string search);
     }
 }

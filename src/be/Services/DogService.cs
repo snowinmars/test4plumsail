@@ -17,9 +17,14 @@ namespace Plum.Services
             this.dogProvider = dogProvider;
         }
 
-        public Task<Dog> AddAsync(Dog dog)
+        public Task<Dog> CreateAsync(Dog dog)
         {
-            return dogProvider.AddAsync(dog);
+            return dogProvider.CreateAsync(dog);
+        }
+
+        public Task<Dog[]> ListAsync(int page, int perPage, string search)
+        {
+            return dogProvider.ListAsync(page, perPage, search);
         }
     }
 }

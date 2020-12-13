@@ -22,7 +22,7 @@ namespace Plum.Controllers.Mapper
                 Sex = dog.Sex,
                 Breed = dog.Breed,
                 Avatar = dog.Avatar,
-                Birthday = dog.Birthday,
+                BirthDay = dog.Birthday,
                 HasManners = dog.HasManners,
                 HasObedience = dog.HasObedience,
             };

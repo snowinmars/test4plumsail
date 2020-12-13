@@ -12,7 +12,7 @@ namespace Plum.Providers.DbEntities
 
         public Breed Breed { get; set; }
 
-        public LocalDate Birthday { get; set; }
+        public LocalDate BirthDay { get; set; }
 
         public Uri Avatar { get; set; }
 
