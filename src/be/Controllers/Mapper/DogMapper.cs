@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Plum.Controllers.Models;
 using Plum.Entities;
 
@@ -6,6 +7,11 @@ namespace Plum.Controllers.Mapper
 {
     internal static class DogMapper
     {
+        public static DogReadModel[] ToDogs(this Dog[] dogs)
+        {
+            return dogs.Select(ToDog).ToArray();
+        }
+
         public static DogReadModel ToDog(this Dog dog)
         {
             if (dog == default)

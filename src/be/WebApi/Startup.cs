@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Converters;
 using Npgsql;
 using Plum.Providers;
@@ -27,6 +26,7 @@ namespace Plum.WebApi
         }
 
         public IConfiguration Configuration { get; }
+
         private const string CustomCorsPolicy = "custom_cors_policy";
 
         public void ConfigureServices(IServiceCollection services)

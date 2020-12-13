@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Plum.Services
 {
-    public class BaseService
+    internal abstract class BaseService
     {
         protected BaseService(ILogger<BaseService> logger)
         {

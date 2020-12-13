@@ -14,14 +14,14 @@ namespace Plum.Controllers
     [AllowAnonymous]
     internal class DogController : BaseController
     {
-        private readonly IDogService dogService;
-
         public DogController(ILogger<BaseController> logger,
             IDogService dogService)
             : base(logger)
         {
             this.dogService = dogService;
         }
+
+        private readonly IDogService dogService;
 
         [HttpPost("")]
         public async Task<Result<DogReadModel>> CreateAsync(DogCreateModel model)
@@ -34,13 +34,13 @@ namespace Plum.Controllers
         }
 
         [HttpGet("")]
-        public async Task<Result<DogReadModel[]>> ListAsync(int page = 0,
+        public async Task<ResultList<DogReadModel[]>> ListAsync(int page = 0,
             int perPage = 10,
             string search = "")
         {
-            var dogs = await dogService.ListAsync(page, perPage, search);
+            var (dogs, count) = await dogService.ListAsync(page, perPage, search);
 
-            return Success(dogs.Select(x => x.ToDog()).ToArray());
+            return Success(dogs.ToDogs(), count);
         }
     }
 }

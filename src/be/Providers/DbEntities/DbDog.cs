@@ -4,6 +4,9 @@ using Plum.Entities.Enums;
 
 namespace Plum.Providers.DbEntities
 {
+    // Can't search by enum as string due to
+    // https://github.com/StackExchange/Dapper/issues/259
+    // I can find a workaround but I'd prefer not to
     internal class DbDog : DbItem
     {
         public string Name { get; set; }

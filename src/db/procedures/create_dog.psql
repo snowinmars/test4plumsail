@@ -5,13 +5,13 @@ create extension if not exists "uuid-ossp";
 drop function if exists create_dog;
 
 create function create_dog
-  ( _id               uuid
-  , _name   text
-  , _avatar text
-  , _sex    integer
-  , _breed  integer
-  , _birthday timestamp without time zone
-  , _hasmanners bool
+  ( _id           uuid
+  , _sex          integer
+  , _name         text
+  , _breed        integer
+  , _avatar       text
+  , _birthday     timestamp without time zone
+  , _hasmanners   bool
   , _hasobedience bool )
 returns setof Dogs as
 $$

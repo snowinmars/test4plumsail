@@ -22,6 +22,10 @@ export interface Result<T> {
   data: T;
 }
 
+export interface ResultList<T> extends Result<T>{
+  count: number,
+}
+
 export interface DiskLinkResult {
   operation_id: string,
   href: string,

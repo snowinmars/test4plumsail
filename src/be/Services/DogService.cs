@@ -6,7 +6,7 @@ using Plum.Services.Abstractions;
 
 namespace Plum.Services
 {
-    public class DogService : BaseService, IDogService
+    internal class DogService : BaseService, IDogService
     {
         private readonly IDogProvider dogProvider;
 
@@ -22,7 +22,7 @@ namespace Plum.Services
             return dogProvider.CreateAsync(dog);
         }
 
-        public Task<Dog[]> ListAsync(int page, int perPage, string search)
+        public Task<(Dog[] dogs, long count)> ListAsync(int page, int perPage, string search)
         {
             return dogProvider.ListAsync(page, perPage, search);
         }

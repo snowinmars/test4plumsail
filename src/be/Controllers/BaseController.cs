@@ -1,12 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Plum.Controllers
 {
-    internal class BaseController
+    internal abstract class BaseController : ControllerBase
     {
-        protected readonly ILogger<BaseController> Logger;
-
-        public BaseController(ILogger<BaseController> logger)
+        protected BaseController(ILogger<BaseController> logger)
         {
             Logger = logger;
         }
@@ -20,14 +19,12 @@ namespace Plum.Controllers
             public T Data { get; set; }
         }
 
-        protected Result<T> Success<T>(T data)
+        public class ResultList<T> : Result<T>
         {
-            return new Result<T>
-            {
-                Data = data,
-                IsSucceed = true,
-            };
+            public long Count { get; set; }
         }
+
+        protected readonly ILogger<BaseController> Logger;
 
         protected Result<T> Failure<T>(T data)
         {
@@ -35,6 +32,25 @@ namespace Plum.Controllers
             {
                 Data = data,
                 IsSucceed = false,
+            };
+        }
+
+        protected ResultList<T> Success<T>(T data, long count)
+        {
+            return new ResultList<T>
+            {
+                Data = data,
+                Count = count,
+                IsSucceed = true,
+            };
+        }
+
+        protected Result<T> Success<T>(T data)
+        {
+            return new Result<T>
+            {
+                Data = data,
+                IsSucceed = true,
             };
         }
     }

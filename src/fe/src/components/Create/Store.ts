@@ -3,7 +3,6 @@ import axios, {AxiosResponse} from 'axios';
 import api from '../../config/api';
 import {DiskLinkResult, DiskUploadResult, DogCreateModel, Result} from '../../types/models';
 
-
 export const save = (form: DogCreateModel): Promise<boolean> => {
   const endpoint = `${api.uri}/api/dogs`;
 
@@ -48,16 +47,18 @@ const uploadAvatar = (file: File): Promise<AxiosResponse<DiskLinkResult>> => {
       formData.append('file', file, file.name);
       return axios.post<DiskUploadResult>(x.data.href, formData, api.buildFileApiConfig());
     })
-    .then((x) => {
+    .then(() => {
       return publish(path, api.yandexDiskOauthToken);
     });
 };
 
-export const onAvatarChange = (file: File, form: DogCreateModel, set: (form: DogCreateModel, value: string) => void) => {
+export const onAvatarChange = (file: File, form: DogCreateModel, set: (form: DogCreateModel, value: string) => void): Promise<AxiosResponse<DiskLinkResult>> => {
   return uploadAvatar(file).then((x) => {
     const value = x.data;
 
-    return set(form, value.href);
+    set(form, value.href);
+
+    return x;
   });
 };
 

@@ -14,6 +14,9 @@ if (!token) throw new Error(`Yandex disk oauth token not found: ${token}`);
 if (!uri) throw new Error(`Be uri not found: ${uri}`);
 
 export default {
+  paging: {
+    perPage: 6,
+  },
   uri: uri,
   defaultAvatar: 'https://www.alliancerehabmed.com/wp-content/uploads/icon-avatar-default.png',
   yandexDiskOauthToken: token,

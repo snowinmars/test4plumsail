@@ -37,16 +37,16 @@ namespace Plum.Providers
             return dbDog.ToDog();
         }
 
-        public async Task<Dog[]> ListAsync(int page, int perPage, string search)
+        public async Task<(Dog[] dogs, long count)> ListAsync(int page, int perPage, string search)
         {
             var dbDogs = await DapperBuilder.Call(Connection)
                                             .Procedure(Procedures.Dog.List)
                                             .WithParameter("_page", page)
                                             .WithParameter("_perPage", perPage)
                                             .WithParameter("_search", $"%{search}%")
-                                            .ExecuteManyAsync<DbDog>();
+                                            .ExecuteManyAsync<DbDogs>();
 
-            return dbDogs.Select(DogMapper.ToDog).ToArray();
+            return (dogs: dbDogs.Select(DogMapper.ToDog).ToArray(), count: dbDogs.FirstOrDefault()?.FullCount ?? 0);
         }
     }
 }

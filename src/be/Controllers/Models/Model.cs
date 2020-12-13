@@ -1,7 +1,4 @@
 namespace Plum.Controllers.Models
 {
-    internal abstract class Model
-    {
-
-    }
+    internal abstract class Model { }
 }

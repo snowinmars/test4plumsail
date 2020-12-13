@@ -70,6 +70,8 @@ printf "%-12s is listening on %-16s : %-5s , %-5s \n" $plumsailNgx $plumsailNgxI
 printf "%-12s is listening on %-16s : %-5s \n" $plumsailFe $plumsailFeIp $plumsailFeHostPort
 printf "%-12s is listening on %-16s : %-5s \n" $plumsailBe $plumsailBeIp $plumsailBeHostPort
 
+echo
+
 # two seconds is enough for images to fail
 printf "Checking that images is still running"
 sleep 0.5
@@ -80,5 +82,7 @@ sleep 0.5
 printf "."
 sleep 0.5
 printf ".\n"
+
+echo
 
 docker ps

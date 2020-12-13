@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scoped.scss';
 import Header from '../../components/Header/Header';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';

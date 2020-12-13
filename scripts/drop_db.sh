@@ -54,4 +54,4 @@ done
 
 
 
-echo "Took $SECONDS seconds over $count scripts"
+echo "Took $SECONDS seconds"

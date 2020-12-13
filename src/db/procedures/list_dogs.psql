@@ -1,18 +1,41 @@
 set client_min_messages to warning ;
 
-drop function if exists list_dogs;
+drop function if exists list_dogs ;
 
 create function list_dogs
-  ( _page integer
-  , _perPage integer
-  , _search text )
-returns setof Dogs as
+  ( _page         integer
+  , _perPage      integer
+  , _search       text )
+returns table
+  ( id            uuid
+  , sex           integer
+  , name          text
+  , breed         integer
+  , avatar        text
+  , birthday      timestamp without time zone
+  , fullCount     bigint
+  , hasManners    bool
+  , createdDate   timestamp without time zone
+  , updatedDate   timestamp without time zone 
+  , hasObedience  bool )
+as
 $$
 begin
 return query (
-  select *
+  select 
+      Dogs.id
+    , Dogs.sex
+    , Dogs.name
+    , Dogs.breed
+    , Dogs.avatar
+    , Dogs.birthday
+    , count(*) over() as fullCount
+    , Dogs.hasManners
+    , Dogs.createdDate
+    , Dogs.updatedDate
+    , Dogs.hasObedience
   from Dogs
-  where Dogs::text like _search
+  where lower(Dogs::text) like lower(_search)
   order by createdDate
   limit _perPage offset _page * _perPage ) ;
 end ;

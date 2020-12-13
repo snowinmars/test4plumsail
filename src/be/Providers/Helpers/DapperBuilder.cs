@@ -34,17 +34,17 @@ namespace Plum.Providers.Helpers
 
         public async Task<bool> ExecuteAsync()
         {
-                var affectedRows = await connection.ExecuteAsync(sql, dynamicParameters, null, null, commandType);
+            var affectedRows = await connection.ExecuteAsync(sql, dynamicParameters, null, null, commandType);
 
-                return affectedRows != 0;
+            return affectedRows != 0;
         }
 
         public async Task<T[]> ExecuteManyAsync<T>()
             where T : DbItem
         {
-                var result = await connection.QueryAsync<T>(sql, dynamicParameters, null, null, commandType);
+            var result = await connection.QueryAsync<T>(sql, dynamicParameters, null, null, commandType);
 
-                return result.ToArray();
+            return result.ToArray();
         }
 
         public async Task<T> ExecuteOneAsync<T>()
@@ -52,34 +52,21 @@ namespace Plum.Providers.Helpers
         {
             var result = await ExecuteManyAsync<T>();
 
-            if (result == default)
-            {
-                return default;
-            }
-
-            return result.FirstOrDefault();
+            return result?.FirstOrDefault();
         }
 
         public async Task<T> ExecuteScalarAsync<T>()
         {
-                var affectedRows =
-                    await connection.ExecuteScalarAsync<T>(sql, dynamicParameters, null, null, commandType);
+            var affectedRows =
+                await connection.ExecuteScalarAsync<T>(sql, dynamicParameters, null, null, commandType);
 
-                return affectedRows;
+            return affectedRows;
         }
 
         public IDapperBuilderExecuteStage Procedure(string procedureName)
         {
             sql = procedureName;
             commandType = CommandType.StoredProcedure;
-
-            return this;
-        }
-
-        public IDapperBuilderExecuteStage Sql(string sql)
-        {
-            this.sql = sql;
-            commandType = CommandType.Text;
 
             return this;
         }

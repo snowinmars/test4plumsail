@@ -7,6 +7,6 @@ namespace Plum.Services.Abstractions
     {
         Task<Dog> CreateAsync(Dog dog);
 
-        Task<Dog[]> ListAsync(int page, int perPage, string search);
+        Task<(Dog[] dogs, long count)> ListAsync(int page, int perPage, string search);
     }
 }
