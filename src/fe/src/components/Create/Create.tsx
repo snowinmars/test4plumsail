@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Add.scoped.scss';
+import './Create.scoped.scss';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,13 +9,14 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Checkbox from '@material-ui/core/Checkbox';
-import {Sex, Breed, Dog} from './Types';
 import {onFormChange, save, onFormEnumChange, onFormCheckboxChange, onAvatarChange} from './Store';
 import {Avatar} from '@material-ui/core';
 import api from '../../config/api';
+import {Breed, Sex} from '../../types/enums';
+import {DogCreateModel} from '../../types/models';
 
-function Add(): JSX.Element {
-  const [form, setForm] = useState<Dog>({
+function Create(): JSX.Element {
+  const [form, setForm] = useState<DogCreateModel>({
     name: null,
     sex: null,
     birthDate: null,
@@ -26,13 +27,21 @@ function Add(): JSX.Element {
   });
 
   const [isAvatarLoading, setIsAvatarLoading] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
 
   return (
     <form
-      className={'plum-add-form'}
+      className={'plum-create-form'}
       onSubmit={(e) => {
         e.preventDefault();
-        return save(form);
+        return save(form)
+          .then((x) => {
+            setIsCreated(x);
+
+            return setTimeout(() => {
+              setIsCreated(false);
+            }, 1000);
+          });
       }}
     >
       <div className={'plum-primary-dog-info'}>
@@ -61,6 +70,7 @@ function Add(): JSX.Element {
         </TextField>
 
         <TextField
+          required
           label='День рождения'
           type='date'
           value={form.birthDate}
@@ -73,7 +83,10 @@ function Add(): JSX.Element {
       </div>
 
       <div className={'plum-secondary-dog-info'}>
-        <FormControl component='fieldset'>
+        <FormControl
+          required
+          component='fieldset'
+        >
           <FormLabel component='legend'>Breed</FormLabel>
           <RadioGroup
             aria-label='breed'
@@ -143,11 +156,13 @@ function Add(): JSX.Element {
       <div className={'plum-form-controls'}>
         <FormControl>
           <Button
+            disabled={!form.name || !form.sex || !form.birthDate || !form.breed}
             variant={'contained'}
             color={'primary'}
             type={'submit'}
           >
-            <i className={'material-icons'}>arrow_right_alt</i>
+            {isCreated && <i className={'material-icons'}>done</i>}
+            {!isCreated && <i className={'material-icons'}>arrow_right_alt</i>}
           </Button>
         </FormControl>
       </div>
@@ -155,4 +170,4 @@ function Add(): JSX.Element {
   );
 }
 
-export default Add;
+export default Create;

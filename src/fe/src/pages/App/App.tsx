@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import List from '../../components/List/List';
-import Add from '../../components/Add/Add';
+import Create from '../../components/Create/Create';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,7 +46,7 @@ function App(): JSX.Element {
         <List />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Add />
+        <Create />
       </TabPanel>
     </div>
   );

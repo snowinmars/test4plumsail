@@ -71,3 +71,4 @@ yarn-error.log*
 src/fe/env-config.js
 *.gen
 **/mochawesome-report/*
+src/fe/.eslintcache
